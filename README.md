@@ -131,7 +131,7 @@ Enchaînement des tâches
 fetch_exchange_rates  →         reader        →       transformer         →          writer
    (BashOperator)          (DockerOperator)          (DockerOperator)             (DockerOperator)
 
-| **Tâche**              | **Opérateur**    | **Rôle**                                                                                                                                        |
+|         Tâche          |       Opérateur  |                        Rôle                                                                                                                  |
 | ---------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | `fetch_exchange_rates` | `BashOperator`   | Récupère les derniers taux de change via l'API `exchangerate-api.com` et les dépose dans `raw/reference/exchange_rates.json` sur Azure.         |
 | `reader`               | `DockerOperator` | Télécharge les CSV métiers et les référentiels depuis la zone `raw` d'Azure ADLS, puis les écrit en Parquet dans `data/staging/`.               |
