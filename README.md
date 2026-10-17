@@ -1,10 +1,14 @@
 🚀 TradeCorp International - Pipeline Data ETL
+
 Docker PySpark PostgreSQL Apache Airflow Azure ADLS Gen2 Pytest
 
 📌 Contexte & Enjeux Métier
+
 Chaque nuit, TradeCorp International reçoit ses données commerciales sous forme de fichiers CSV bruts. Le traitement était jusqu'à présent réalisé manuellement chaque matin (environ 3 heures de traitement), générant des erreurs, un manque d'historisation et une absence totale de traçabilité.
 
-Objectif du projet : Industrialiser un pipeline ETL PySpark conteneurisé qui télécharge les fichiers métiers et référentiels depuis Azure ADLS Gen2, applique des transformations complexes (nettoyage, calculs financiers, conversion dynamique de devises), persiste les données enrichies en format Parquet et garantit la qualité via une suite de tests unitaires automatisés. L'ensemble est orchestré quotidiennement par Apache Airflow.
+Objectif du projet : 
+
+Industrialiser un pipeline ETL PySpark conteneurisé qui télécharge les fichiers métiers et référentiels depuis Azure ADLS Gen2, applique des transformations complexes (nettoyage, calculs financiers, conversion dynamique de devises), persiste les données enrichies en format Parquet et garantit la qualité via une suite de tests unitaires automatisés. L'ensemble est orchestré quotidiennement par Apache Airflow.
 
 
 🏗️ Architecture Technique Target
