@@ -9,8 +9,6 @@ Objectif du projet : Industrialiser un pipeline ETL PySpark conteneurisé qui t�
 
 🏗️ Architecture Technique Target
 
-
-
                                     ┌──────────────────────────────────┐
                                     │   Azure ADLS Gen2 (Zone raw)     │
                                     │  - Données métiers CSV           │
@@ -40,8 +38,6 @@ Objectif du projet : Industrialiser un pipeline ETL PySpark conteneurisé qui t�
 │  - Mocks PySpark (sans réseau) │   │   - Dataset enrichi en Parquet   │
 │  - Execution via PyTest        │   │   - Partitionné par pays         │
 └────────────────────────────────┘   └──────────────────────────────────┘
-
-
 
 
 🛠️ Stack Technique & Justifications
