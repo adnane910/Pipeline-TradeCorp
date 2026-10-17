@@ -1,0 +1,6 @@
+azure-storage-file-datalake 
+python-dotenv
+azure-storage-blob
+requests
+pytest
+apache-airflow-providers-docker

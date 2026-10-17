@@ -1,0 +1,67 @@
+services:
+  spark:
+    build: .
+    image: tradecorp_spark
+    container_name: tradecorp_spark
+    env_file:
+      - .env
+    ports:
+      - "8888:8888"
+      - "4041:4040"
+    volumes:
+      - ./data:/home/jovyan/data
+      - ./notebooks:/home/jovyan/work
+      - ./src:/home/jovyan/src
+      - ./tests:/home/jovyan/tests
+    environment:
+      - SPARK_OPTS=--packages org.postgresql:postgresql:42.7.0
+      - PYSPARK_SUBMIT_ARGS=--packages org.postgresql:postgresql:42.7.0 pyspark-shell
+      - JUPYTER_TOKEN=${JUPYTER_TOKEN}
+    depends_on:
+      - postgres
+
+  # postgres db
+  postgres:
+    image: postgres:16
+    container_name: tradecorp_postgres_2
+    environment:
+      POSTGRES_USER: tradecorp
+      POSTGRES_PASSWORD: tradecorp
+      POSTGRES_DB: tradecorp_db
+    ports:
+      - "5454:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  airflow:
+    build:
+      context: .
+      dockerfile: Dockerfile.airflow
+    container_name: tradecorp_airflow
+    entrypoint: []
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://tradecorp:tradecorp@postgres:5432/tradecorp_db
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./src:/opt/airflow/src
+      - ./.env:/opt/airflow/.env
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: >
+      bash -c "
+      until (echo > /dev/tcp/postgres/5432) 2>/dev/null; do echo 'En attente de Postgres...'; sleep 2; done;
+      airflow db migrate;
+      airflow users create --username admin --password admin --firstname Admin --lastname Admin --role Admin --email admin@admin.com || echo 'User already exists, skipping';
+      airflow scheduler &
+      exec airflow webserver
+      "
+
+volumes:
+  pgdata:

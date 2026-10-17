@@ -1,0 +1,25 @@
+# données  
+data/
+
+# Python
+__pycache__/
+*.pyc
+
+# Cache PyTest
+.pytest_cache/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+# Secrets
+.env*.bak
+
+.env
+*.bak
+image.png
