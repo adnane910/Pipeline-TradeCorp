@@ -11,7 +11,11 @@ Objectif du projet :
 Industrialiser un pipeline ETL PySpark conteneurisé qui télécharge les fichiers métiers et référentiels depuis Azure ADLS Gen2, applique des transformations complexes (nettoyage, calculs financiers, conversion dynamique de devises), persiste les données enrichies en format Parquet et garantit la qualité via une suite de tests unitaires automatisés. L'ensemble est orchestré quotidiennement par Apache Airflow.
 
 
+
+
 🏗️ Architecture Technique Target
+
+
                                     ┌──────────────────────────────────┐
                                     │   Azure ADLS Gen2 (Zone raw)     │
                                     │  - Données métiers CSV           │
@@ -41,6 +45,8 @@ Industrialiser un pipeline ETL PySpark conteneurisé qui télécharge les fichie
 │  - Mocks PySpark (sans réseau) │   │   - Dataset enrichi en Parquet   │
 │  - Execution via PyTest        │   │   - Partitionné par pays         │
 └────────────────────────────────┘   └──────────────────────────────────┘
+
+
 
 🛠️ Stack Technique & Justifications
 Docker & Dev Containers : Garantit la reproductibilité exacte de l'environnement de développement et de production.
