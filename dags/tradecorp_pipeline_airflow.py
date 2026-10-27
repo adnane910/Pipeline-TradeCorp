@@ -41,9 +41,10 @@ with DAG(
 
 
     # Récupération des taux de change depuis l'API
+    # BashOperator pour executer une commande bash
     t0 = BashOperator(
         task_id="fetch_exchange_rates",
-        bash_command="python /opt/airflow/src/fetch_exchange_rates.py", 
+        bash_command="python /opt/airflow/src/fetch_exchange_rates.py",
     )
 
 
